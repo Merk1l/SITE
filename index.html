@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Методичка: Кнопки на CSS и JS</title>
+  <title>Методичка: Кнопки на CSS и JavaScript</title>
   <style>
     * {
       margin: 0;
@@ -26,6 +26,11 @@
     h1 {
       color: #2c3e50;
       font-size: 28px;
+    }
+
+    p.subtitle {
+      color: #6c757d;
+      margin-bottom: 20px;
     }
 
     /* Панель разделов */
@@ -123,7 +128,7 @@
 
   <header>
     <h1>Методичка: Кнопки на CSS и JavaScript</h1>
-    <p>Выберите раздел, затем — пример</p>
+    <p class="subtitle">Выберите раздел, затем — пример</p>
   </header>
 
   <!-- Панель разделов -->
@@ -186,7 +191,7 @@
   </div>
 
   <script>
-    // Стили для всех кнопок
+    // Создаём стили для всех кнопок
     const style = document.createElement('style');
     style.textContent = `
       .btn-basic {
@@ -368,16 +373,21 @@ btn.addEventListener('click', () => {
       let codeCss = ex.css || '';
       let codeJs = ex.js || '';
 
+      // Экранируем HTML/JS для безопасного отображения
+      const escapedHtml = escapeHtml(codeHtml);
+      const escapedCss = escapeHtml(codeCss);
+      const escapedJs = escapeHtml(codeJs);
+
       detailBox.innerHTML = `
         <h2>${ex.title}</h2>
         <p>${ex.desc}</p>
         <div class="preview-area">${codeHtml}</div>
-        <div class="code-block">${escapeHtml(codeHtml)}\n\n<style>\n${escapeHtml(codeCss)}\n</style>${
-          codeJs ? `\n\n<script>\n${escapeHtml(codeJs)}\n</script>` : ''
+        <div class="code-block">${escapedHtml}\n\n<style>\n${escapedCss}\n</style>${
+          codeJs ? `\n\n<script>\n${escapedJs}\n</script>` : ''
         }</div>
       `;
 
-      // Выполняем JS-логику для preview (в реальном времени)
+      // Добавляем функциональность только для JS-примеров (в preview)
       if (id === 'js-alert') {
         document.getElementById('alertBtn')?.addEventListener('click', () => {
           alert('Привет из JavaScript!');
@@ -398,7 +408,12 @@ btn.addEventListener('click', () => {
     }
 
     function escapeHtml(str) {
-      return str.replace(/</g, '<').replace(/>/g, '>');
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '<')
+        .replace(/>/g, '>')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     // Инициализация

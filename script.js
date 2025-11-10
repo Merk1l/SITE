@@ -26,7 +26,7 @@ const examplesData = {
     html: '<button class="btn-gradient">Нажми</button>',
     css: `.btn-gradient {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -192,3 +192,4 @@ function escapeHtml(str) {
 
 // Инициализация
 showExample('css-basic');
+

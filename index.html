@@ -1,15 +1,201 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Мой сайт</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Моё Портфолио</title>
+  <style>
+    /* Общие стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease 0.3s both;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #2575fc;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #6a11cb;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .card h2 {
+      margin-bottom: 1rem;
+      color: #2575fc;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #6a11cb;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #2575fc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #222;
+      color: #aaa;
+    }
+
+    /* Анимации */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Адаптивность */
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      nav a { margin: 0 0.5rem; font-size: 0.9rem; }
+      section { padding: 3rem 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Хеллоу</h1>
-  <button>Кнопка</button>
-  <script src="script.js"></script>
-</body>
 
+  <nav>
+    <a href="#home">Главная</a>
+    <a href="#about">Обо мне</a>
+    <a href="#projects">Проекты</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+
+  <header id="home">
+    <h1>Привет, я Алекс!</h1>
+    <p>Frontend-разработчик, люблю создавать красивые и быстрые веб-сайты.</p>
+  </header>
+
+  <section id="about">
+    <div class="card">
+      <h2>Обо мне</h2>
+      <p>Я увлекаюсь веб-разработкой уже более 4 лет. Мои основные технологии — HTML, CSS, JavaScript, React и Sass. Всегда открыт к новым вызовам и интересным проектам.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="card">
+      <h2>Мои проекты</h2>
+      <p>Вот несколько моих последних работ:</p>
+      <ul>
+        <li>Интернет-магазин с корзиной на React</li>
+        <li>Погодное приложение с API OpenWeather</li>
+        <li>Адаптивный блог на чистом HTML/CSS</li>
+      </ul>
+      <a href="#" class="btn">Посмотреть все</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="card">
+      <h2>Связаться со мной</h2>
+      <p>Готов обсудить сотрудничество! Напишите мне на почту: <strong>alex@example.com</strong></p>
+      <button id="notifyBtn" class="btn">Подписаться на обновления</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Алекс. Все права защищены.</p>
+  </footer>
+
+  <script>
+    // Простая JavaScript-функция для кнопки
+    document.getElementById('notifyBtn').addEventListener('click', function() {
+      alert('Спасибо! Вы подписаны на обновления 🎉');
+    });
+
+    // Плавная прокрутка к якорям
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
 </html>

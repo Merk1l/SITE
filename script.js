@@ -20,11 +20,11 @@ const examplesData = {
   transform: scale(1.05);
 }`
   },
-'css-gradient': {
-  title: 'Кнопка с градиентом',
-  desc: 'Использование градиента розового цвета для создания современного вида кнопки.',
-  html: '<button class="btn-gradient">Нажми</button>',
-  css: `.btn-gradient {
+  'css-gradient': {
+    title: 'Кнопка с градиентом',
+    desc: 'Использование градиента розового цвета для создания современного вида кнопки.',
+    html: '<button class="btn-gradient">Нажми</button>',
+    css: `.btn-gradient {
   padding: 12px 24px;
   background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
   color: #333;
@@ -136,10 +136,17 @@ function showExample(id) {
     <h2>${ex.title}</h2>
     <p>${ex.desc}</p>
     <div class="preview-area">${codeHtml}</div>
-    <div class="code-block">${escapedHtml}\n\n<style>\n${escapedCss}\n</style>${
-      codeJs ? `\n\n<script>\n${escapedJs}\n</script>` : ''
-    }</div>
+    <div class="code-block"></div>
   `;
+
+  // Находим блок кода и безопасно вставляем содержимое
+  const codeBlock = document.querySelector('.code-block');
+  let fullCode = escapedHtml + '\n\n<style>\n' + escapedCss + '\n</style>';
+  if (codeJs) {
+    fullCode += '\n\n<script>\n' + escapedJs + '\n</script>';
+  }
+
+  codeBlock.textContent = fullCode; // <-- используем textContent, чтобы код отображался как текст
 
   // Убираем старые слушатели (если есть)
   removeEventListeners();
@@ -192,5 +199,3 @@ function escapeHtml(str) {
 
 // Инициализация
 showExample('css-basic');
-
-

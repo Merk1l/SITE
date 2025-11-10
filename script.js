@@ -6,12 +6,18 @@ const examplesData = {
     desc: 'Простейшая кнопка с использованием базовых свойств CSS: padding, border-radius, background.',
     html: '<button class="btn-basic">Нажми</button>',
     css: `.btn-basic {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background: #0d6efd;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-basic:hover {
+  background: #0b5ed7;
+  transform: scale(1.05);
 }`
   },
   'css-gradient': {
@@ -19,12 +25,18 @@ const examplesData = {
     desc: 'Использование линейного градиента для создания современного вида кнопки.',
     html: '<button class="btn-gradient">Нажми</button>',
     css: `.btn-gradient {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #5a0fb0, #1d6af0);
+  transform: scale(1.05);
 }`
   },
   'css-hover': {
@@ -32,17 +44,18 @@ const examplesData = {
     desc: 'Добавление плавного изменения цвета и масштаба при наведении курсора.',
     html: '<button class="btn-hover">Нажми</button>',
     css: `.btn-hover {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background: #28a745;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
+  font-weight: 600;
+  transition: all 0.3s;
 }
 .btn-hover:hover {
   background: #218838;
-  transform: scale(1.05);
+  transform: scale(1.05) rotate(2deg);
 }`
   },
 

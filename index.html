@@ -3,173 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Методичка: Кнопки</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-    body { background: #f8f9fa; padding: 20px; }
-    header { text-align: center; margin-bottom: 25px; }
-    h1 { color: #2c3e50; }
-    .section-nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
-    .section-btn { padding: 10px 20px; background: #e9ecef; border: none; border-radius: 6px; cursor: pointer; }
-    .section-btn.active { background: #0d6efd; color: white; }
-    .examples { display: none; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; }
-    .examples.active { display: flex; }
-    .example-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; width: 160px; }
-    .example-card button { width: 100%; padding: 8px; margin-top: 8px; cursor: pointer; }
-    .detail-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto; }
-    .code-block { background: #2d2d2d; color: #f8f8f2; padding: 12px; border-radius: 6px; margin-top: 15px; font-family: monospace; white-space: pre; overflow-x: auto; font-size: 14px; }
-    .preview-area { margin: 15px 0; padding: 12px; background: #f0f0f0; border-radius: 6px; text-align: center; }
-  </style>
+  <title>Методичка: Кнопки на CSS и JavaScript</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <h1>Методичка: Кнопки на CSS и JS</h1>
+    <h1>Методичка: Кнопки на CSS и JavaScript</h1>
+    <p class="subtitle">Выберите раздел, затем — пример</p>
   </header>
 
+  <!-- Панель разделов -->
   <div class="section-nav">
-    <button class="section-btn active" data-section="css">CSS</button>
-    <button class="section-btn" data-section="js">JavaScript</button>
+    <button class="section-btn active" data-section="css">CSS-кнопки</button>
+    <button class="section-btn" data-section="js">JavaScript-кнопки</button>
   </div>
 
+  <!-- Примеры: CSS -->
   <div class="examples active" id="css-examples">
-    <div class="example-card" data-example="css1">
-      <p>Базовая</p>
-      <button style="padding:8px 16px;background:#0d6efd;color:white;border:none;border-radius:4px;">Кнопка</button>
+    <div class="example-card" data-example="css-basic">
+      <p>Базовая кнопка</p>
+      <button class="btn-basic">Нажми</button>
     </div>
-    <div class="example-card" data-example="css2">
+    <div class="example-card" data-example="css-gradient">
       <p>Градиент</p>
-      <button style="padding:8px 16px;background:linear-gradient(135deg,#6a11cb,#2575fc);color:white;border:none;border-radius:4px;">Кнопка</button>
+      <button class="btn-gradient">Нажми</button>
+    </div>
+    <div class="example-card" data-example="css-hover">
+      <p>Анимация при наведении</p>
+      <button class="btn-hover">Нажми</button>
     </div>
   </div>
 
+  <!-- Примеры: JS -->
   <div class="examples" id="js-examples">
-    <div class="example-card" data-example="js1">
+    <div class="example-card" data-example="js-alert">
       <p>alert()</p>
-      <button style="padding:8px 16px;background:#ffc107;border:none;border-radius:4px;">Показать</button>
+      <button class="btn-js-alert">Показать</button>
     </div>
-    <div class="example-card" data-example="js2">
-      <p>Счётчик</p>
-      <button style="padding:8px 16px;background:#dc3545;color:white;border:none;border-radius:4px;">Кликни!</button>
+    <div class="example-card" data-example="js-toggle">
+      <p>Toggle класса</p>
+      <button class="btn-js-toggle">Переключить</button>
+    </div>
+    <div class="example-card" data-example="js-counter">
+      <p>Счётчик кликов</p>
+      <button class="btn-js-counter">Кликни!</button>
     </div>
   </div>
 
+  <!-- Детали (описание + код) -->
   <div class="detail-box" id="detail">
     <h2>Базовая кнопка на CSS</h2>
-    <p>Простой пример с использованием padding, border-radius и background.</p>
+    <p>Простейшая кнопка с использованием базовых свойств CSS: padding, border-radius, background.</p>
     <div class="preview-area">
-      <button id="live-btn" style="padding:10px 20px;background:#0d6efd;color:white;border:none;border-radius:6px;">Нажми</button>
+      <button class="btn-basic">Пример кнопки</button>
     </div>
-    <div class="code-block"><button>Нажми</button>
+    <div class="code-block"><button class="btn-basic">Нажми</button>
 
 <style>
-button {
+.btn-basic {
   padding: 10px 20px;
   background: #0d6efd;
   color: white;
   border: none;
   border-radius: 6px;
+  cursor: pointer;
 }
 </style></div>
   </div>
 
-  <script>
-    const examples = {
-      css1: {
-        title: "Базовая кнопка",
-        desc: "Классическая кнопка с синим фоном.",
-        html: `<button id="live-btn">Нажми</button>`,
-        css: `button {\n  padding: 10px 20px;\n  background: #0d6efd;\n  color: white;\n  border: none;\n  border-radius: 6px;\n}`,
-        js: ""
-      },
-      css2: {
-        title: "Градиентная кнопка",
-        desc: "Использование линейного градиента.",
-        html: `<button id="live-btn">Нажми</button>`,
-        css: `button {\n  padding: 10px 20px;\n  background: linear-gradient(135deg, #6a11cb, #2575fc);\n  color: white;\n  border: none;\n  border-radius: 6px;\n}`,
-        js: ""
-      },
-      js1: {
-        title: "Кнопка с alert()",
-        desc: "Показывает всплывающее окно.",
-        html: `<button id="live-btn">Показать</button>`,
-        css: `button {\n  padding: 10px 20px;\n  background: #ffc107;\n  border: none;\n  border-radius: 6px;\n}`,
-        js: `document.getElementById('live-btn').addEventListener('click', () => {\n  alert('Привет!');\n});`
-      },
-      js2: {
-        title: "Кнопка-счётчик",
-        desc: "Считает количество кликов.",
-        html: `<button id="live-btn">Кликни!</button>`,
-        css: `button {\n  padding: 10px 20px;\n  background: #dc3545;\n  color: white;\n  border: none;\n  border-radius: 6px;\n}`,
-        js: `let count = 0;\ndocument.getElementById('live-btn').addEventListener('click', () => {\n  document.getElementById('live-btn').textContent = 'Кликов: ' + (++count);\n});`
-      }
-    };
-
-    // Навигация по разделам
-    document.querySelectorAll('.section-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.section-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const section = btn.dataset.section;
-        document.getElementById('css-examples').classList.toggle('active', section === 'css');
-        document.getElementById('js-examples').classList.toggle('active', section === 'js');
-        showExample(section === 'css' ? 'css1' : 'js1');
-      });
-    });
-
-    // Клик по примеру
-    document.querySelectorAll('.example-card').forEach(card => {
-      card.addEventListener('click', () => {
-        showExample(card.dataset.example);
-      });
-    });
-
-    function escapeHtml(text) {
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "<")
-        .replace(/>/g, ">")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    function showExample(key) {
-      const ex = examples[key];
-      if (!ex) return;
-
-      const detail = document.getElementById('detail');
-      detail.innerHTML = `
-        <h2>${ex.title}</h2>
-        <p>${ex.desc}</p>
-        <div class="preview-area">${ex.html}</div>
-        <div class="code-block">${escapeHtml(ex.html)}\n\n<style>\n${escapeHtml(ex.css)}\n</style>${
-          ex.js ? `\n\n<script>\n${escapeHtml(ex.js)}\n</script>` : ''
-        }</div>
-      `;
-
-      // Добавляем функциональность — НО ТОЛЬКО после вставки!
-      setTimeout(() => {
-        const liveBtn = document.getElementById('live-btn');
-        if (!liveBtn) return;
-
-        // Очищаем старые обработчики (клонируем элемент)
-        const newBtn = liveBtn.cloneNode(true);
-        liveBtn.parentNode.replaceChild(newBtn, liveBtn);
-
-        // Добавляем новую логику
-        if (key === 'js1') {
-          newBtn.addEventListener('click', () => alert('Привет!'));
-        } else if (key === 'js2') {
-          let count = 0;
-          newBtn.addEventListener('click', () => {
-            newBtn.textContent = 'Кликов: ' + (++count);
-          });
-        }
-      }, 10);
-    }
-
-    // Инициализация
-    showExample('css1');
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Методичка: HTML, CSS, JS</title>
+  <title>Методичка: Кнопки на CSS и JS</title>
   <style>
     * {
       margin: 0;
@@ -13,53 +13,77 @@
     }
 
     body {
-      background-color: #f8f9fa;
+      background: #f5f7fa;
       color: #333;
       padding: 20px;
     }
 
     header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     h1 {
       color: #2c3e50;
-      margin-bottom: 10px;
+      font-size: 28px;
     }
 
-    /* Панель навигации */
-    .nav-buttons {
+    /* Панель разделов */
+    .section-nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
       justify-content: center;
+      gap: 15px;
       margin-bottom: 30px;
+      flex-wrap: wrap;
     }
 
-    .nav-btn {
-      padding: 12px 24px;
+    .section-btn {
+      padding: 10px 20px;
       font-size: 16px;
       font-weight: 600;
+      background: #e0e0e0;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      background-color: #e9ecef;
-      color: #495057;
-      transition: all 0.3s ease;
+      transition: background 0.3s;
     }
 
-    .nav-btn:hover {
-      background-color: #ced4da;
-    }
-
-    .nav-btn.active {
+    .section-btn.active {
       background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
       color: white;
     }
 
-    /* Блок вывода информации */
-    .info-box {
+    /* Список примеров (кнопок-превью) */
+    .examples {
+      display: none;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .examples.active {
+      display: flex;
+    }
+
+    .example-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      width: 180px;
+      text-align: center;
+    }
+
+    .example-card button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    /* Блок с описанием и кодом */
+    .detail-box {
       background: white;
       border-radius: 12px;
       padding: 25px;
@@ -70,12 +94,12 @@
       line-height: 1.6;
     }
 
-    .info-box h2 {
-      margin-bottom: 15px;
+    .detail-box h2 {
       color: #2575fc;
+      margin-bottom: 12px;
     }
 
-    .code {
+    .code-block {
       background: #2d2d2d;
       color: #f8f8f2;
       padding: 16px;
@@ -86,136 +110,299 @@
       overflow-x: auto;
     }
 
-    @media (max-width: 600px) {
-      .nav-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      .nav-btn {
-        width: 100%;
-        max-width: 250px;
-      }
+    .preview-area {
+      margin: 15px 0;
+      padding: 15px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Интерактивная методичка</h1>
-    <p>Нажмите на кнопку, чтобы увидеть пример кода и описание</p>
+    <h1>Методичка: Кнопки на CSS и JavaScript</h1>
+    <p>Выберите раздел, затем — пример</p>
   </header>
 
-  <div class="nav-buttons">
-    <button class="nav-btn active" data-topic="html">HTML</button>
-    <button class="nav-btn" data-topic="css">CSS</button>
-    <button class="nav-btn" data-topic="js">JavaScript</button>
-    <button class="nav-btn" data-topic="flex">Flexbox</button>
-    <button class="nav-btn" data-topic="grid">CSS Grid</button>
+  <!-- Панель разделов -->
+  <div class="section-nav">
+    <button class="section-btn active" data-section="css">CSS-кнопки</button>
+    <button class="section-btn" data-section="js">JavaScript-кнопки</button>
   </div>
 
-  <div class="info-box" id="content">
-    <h2>HTML — основа веб-страницы</h2>
-    <p>HTML (HyperText Markup Language) используется для структурирования содержимого веб-страницы.</p>
-    <div class="code"><!DOCTYPE html>
-<html lang="ru">
-<head>
-  <title>Пример</title>
-</head>
-<body>
-  <h1>Заголовок</h1>
-  <p>Абзац текста</p>
-</body>
-</html></div>
+  <!-- Примеры: CSS -->
+  <div class="examples active" id="css-examples">
+    <div class="example-card" data-example="css-basic">
+      <p>Базовая кнопка</p>
+      <button class="btn-basic">Нажми</button>
+    </div>
+    <div class="example-card" data-example="css-gradient">
+      <p>Градиент</p>
+      <button class="btn-gradient">Нажми</button>
+    </div>
+    <div class="example-card" data-example="css-hover">
+      <p>Анимация при наведении</p>
+      <button class="btn-hover">Нажми</button>
+    </div>
+  </div>
+
+  <!-- Примеры: JS -->
+  <div class="examples" id="js-examples">
+    <div class="example-card" data-example="js-alert">
+      <p>alert()</p>
+      <button class="btn-js-alert">Показать</button>
+    </div>
+    <div class="example-card" data-example="js-toggle">
+      <p>Toggle класса</p>
+      <button class="btn-js-toggle">Переключить</button>
+    </div>
+    <div class="example-card" data-example="js-counter">
+      <p>Счётчик кликов</p>
+      <button class="btn-js-counter">Кликни!</button>
+    </div>
+  </div>
+
+  <!-- Детали (описание + код) -->
+  <div class="detail-box" id="detail">
+    <h2>Базовая кнопка на CSS</h2>
+    <p>Простейшая кнопка с использованием базовых свойств CSS: padding, border-radius, background.</p>
+    <div class="preview-area">
+      <button class="btn-basic">Пример кнопки</button>
+    </div>
+    <div class="code-block"><button class=&quot;btn-basic&quot;>Нажми</button>
+
+<style>
+.btn-basic {
+  padding: 10px 20px;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+</style></div>
   </div>
 
   <script>
-    const topics = {
-      html: {
-        title: "HTML — основа веб-страницы",
-        description: "HTML (HyperText Markup Language) используется для структурирования содержимого веб-страницы.",
-        code: `<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <title>Пример</title>
-</head>
-<body>
-  <h1>Заголовок</h1>
-  <p>Абзац текста</p>
-</body>
-</html>`
-      },
-      css: {
-        title: "CSS — оформление страницы",
-        description: "CSS (Cascading Style Sheets) отвечает за внешний вид и оформление HTML-элементов.",
-        code: `body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
-}
+    // Стили для всех кнопок
+    const style = document.createElement('style');
+    style.textContent = `
+      .btn-basic {
+        padding: 10px 20px;
+        background: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
 
-h1 {
-  color: #2575fc;
-  text-align: center;
+      .btn-gradient {
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .btn-hover {
+        padding: 10px 20px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.3s;
+      }
+      .btn-hover:hover {
+        background: #218838;
+        transform: scale(1.05);
+      }
+
+      .btn-js-alert {
+        padding: 10px 20px;
+        background: #ffc107;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .btn-js-toggle {
+        padding: 10px 20px;
+        background: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .highlight {
+        background: #ffcc00 !important;
+        transform: scale(1.1);
+      }
+
+      .btn-js-counter {
+        padding: 10px 20px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Данные примеров
+    const examplesData = {
+      // CSS
+      'css-basic': {
+        title: 'Базовая кнопка на CSS',
+        desc: 'Простейшая кнопка с использованием базовых свойств CSS: padding, border-radius, background.',
+        html: '<button class="btn-basic">Нажми</button>',
+        css: `.btn-basic {
+  padding: 10px 20px;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }`
       },
-      js: {
-        title: "JavaScript — поведение страницы",
-        description: "JavaScript добавляет интерактивность: обработку кликов, динамическое обновление контента и т.д.",
-        code: `document.getElementById('btn').addEventListener('click', () => {
+      'css-gradient': {
+        title: 'Кнопка с градиентом',
+        desc: 'Использование линейного градиента для создания современного вида кнопки.',
+        html: '<button class="btn-gradient">Нажми</button>',
+        css: `.btn-gradient {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}`
+      },
+      'css-hover': {
+        title: 'Анимация при наведении',
+        desc: 'Добавление плавного изменения цвета и масштаба при наведении курсора.',
+        html: '<button class="btn-hover">Нажми</button>',
+        css: `.btn-hover {
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.btn-hover:hover {
+  background: #218838;
+  transform: scale(1.05);
+}`
+      },
+
+      // JavaScript
+      'js-alert': {
+        title: 'Кнопка с alert()',
+        desc: 'Простейший пример взаимодействия: при клике выводится системное всплывающее окно.',
+        html: '<button class="btn-js-alert" id="alertBtn">Показать</button>',
+        js: `document.getElementById('alertBtn').addEventListener('click', () => {
   alert('Привет из JavaScript!');
 });`
       },
-      flex: {
-        title: "Flexbox — гибкая верстка",
-        description: "Flexbox позволяет легко выравнивать и распределять элементы в контейнере.",
-        code: `.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.item {
-  flex: 1;
-}`
+      'js-toggle': {
+        title: 'Toggle (переключение стиля)',
+        desc: 'При каждом клике кнопка переключает дополнительный CSS-класс, меняя внешний вид.',
+        html: '<button class="btn-js-toggle" id="toggleBtn">Переключить</button>',
+        js: `document.getElementById('toggleBtn').addEventListener('click', () => {
+  document.getElementById('toggleBtn').classList.toggle('highlight');
+});`
       },
-      grid: {
-        title: "CSS Grid — мощная сетка",
-        description: "CSS Grid — это двумерная система верстки, позволяющая создавать сложные макеты.",
-        code: `.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.item {
-  background: #e9ecef;
-  padding: 20px;
-  text-align: center;
-}`
+      'js-counter': {
+        title: 'Счётчик кликов',
+        desc: 'Кнопка отслеживает количество нажатий и обновляет свой текст.',
+        html: '<button class="btn-js-counter" id="counterBtn">Кликни!</button>',
+        js: `let count = 0;
+const btn = document.getElementById('counterBtn');
+btn.addEventListener('click', () => {
+  count++;
+  btn.textContent = \`Кликов: \${count}\`;
+});`
       }
     };
 
-    const buttons = document.querySelectorAll('.nav-btn');
-    const contentBox = document.getElementById('content');
+    const sectionBtns = document.querySelectorAll('.section-btn');
+    const cssExamples = document.getElementById('css-examples');
+    const jsExamples = document.getElementById('js-examples');
+    const detailBox = document.getElementById('detail');
 
-    buttons.forEach(btn => {
+    // Переключение разделов
+    sectionBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Снять активный класс
-        buttons.forEach(b => b.classList.remove('active'));
-        // Добавить активный класс текущей кнопке
+        sectionBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const topicKey = btn.dataset.topic;
-        const topic = topics[topicKey];
+        const section = btn.dataset.section;
+        cssExamples.classList.toggle('active', section === 'css');
+        jsExamples.classList.toggle('active', section === 'js');
 
-        contentBox.innerHTML = `
-          <h2>${topic.title}</h2>
-          <p>${topic.description}</p>
-          <div class="code">${topic.code}</div>
-        `;
+        // Сбросить детали на первый пример текущего раздела
+        const firstExample = section === 'css' ? 'css-basic' : 'js-alert';
+        showExample(firstExample);
       });
     });
+
+    // Обработка кликов по примерам
+    document.querySelectorAll('.example-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const exampleId = card.dataset.example;
+        showExample(exampleId);
+      });
+    });
+
+    function showExample(id) {
+      const ex = examplesData[id];
+      if (!ex) return;
+
+      let codeHtml = ex.html;
+      let codeCss = ex.css || '';
+      let codeJs = ex.js || '';
+
+      detailBox.innerHTML = `
+        <h2>${ex.title}</h2>
+        <p>${ex.desc}</p>
+        <div class="preview-area">${codeHtml}</div>
+        <div class="code-block">${escapeHtml(codeHtml)}\n\n<style>\n${escapeHtml(codeCss)}\n</style>${
+          codeJs ? `\n\n<script>\n${escapeHtml(codeJs)}\n</script>` : ''
+        }</div>
+      `;
+
+      // Выполняем JS-логику для preview (в реальном времени)
+      if (id === 'js-alert') {
+        document.getElementById('alertBtn')?.addEventListener('click', () => {
+          alert('Привет из JavaScript!');
+        });
+      } else if (id === 'js-toggle') {
+        const toggleBtn = document.getElementById('toggleBtn');
+        toggleBtn?.addEventListener('click', () => {
+          toggleBtn.classList.toggle('highlight');
+        });
+      } else if (id === 'js-counter') {
+        let count = 0;
+        const counterBtn = document.getElementById('counterBtn');
+        counterBtn?.addEventListener('click', () => {
+          count++;
+          counterBtn.textContent = `Кликов: ${count}`;
+        });
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/</g, '<').replace(/>/g, '>');
+    }
+
+    // Инициализация
+    showExample('css-basic');
   </script>
 </body>
 </html>

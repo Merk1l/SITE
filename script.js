@@ -20,14 +20,14 @@ const examplesData = {
   transform: scale(1.05);
 }`
   },
-  'css-gradient': {
-    title: 'Кнопка с градиентом',
-    desc: 'Использование линейного градиента для создания современного вида кнопки.',
-    html: '<button class="btn-gradient">Нажми</button>',
-    css: `.btn-gradient {
+'css-gradient': {
+  title: 'Кнопка с градиентом',
+  desc: 'Использование градиента розового цвета для создания современного вида кнопки.',
+  html: '<button class="btn-gradient">Нажми</button>',
+  css: `.btn-gradient {
   padding: 12px 24px;
   background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-  color: white;
+  color: #333;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -35,7 +35,7 @@ const examplesData = {
   transition: all 0.2s;
 }
 .btn-gradient:hover {
-  background: linear-gradient(135deg, #5a0fb0, #1d6af0);
+  background: linear-gradient(135deg, #ff7a82, #f8b9b0);
   transform: scale(1.05);
 }`
   },
@@ -192,4 +192,5 @@ function escapeHtml(str) {
 
 // Инициализация
 showExample('css-basic');
+
 

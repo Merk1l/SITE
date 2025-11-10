@@ -378,6 +378,7 @@ btn.addEventListener('click', () => {
       const escapedCss = escapeHtml(codeCss);
       const escapedJs = escapeHtml(codeJs);
 
+      // Выводим описание и превью
       detailBox.innerHTML = `
         <h2>${ex.title}</h2>
         <p>${ex.desc}</p>
@@ -387,24 +388,44 @@ btn.addEventListener('click', () => {
         }</div>
       `;
 
+      // Убираем старые слушатели (если есть)
+      removeEventListeners();
+
       // Добавляем функциональность только для JS-примеров (в preview)
       if (id === 'js-alert') {
-        document.getElementById('alertBtn')?.addEventListener('click', () => {
-          alert('Привет из JavaScript!');
-        });
+        const btn = document.getElementById('alertBtn');
+        if (btn) {
+          btn.addEventListener('click', () => {
+            alert('Привет из JavaScript!');
+          });
+        }
       } else if (id === 'js-toggle') {
-        const toggleBtn = document.getElementById('toggleBtn');
-        toggleBtn?.addEventListener('click', () => {
-          toggleBtn.classList.toggle('highlight');
-        });
+        const btn = document.getElementById('toggleBtn');
+        if (btn) {
+          btn.addEventListener('click', () => {
+            btn.classList.toggle('highlight');
+          });
+        }
       } else if (id === 'js-counter') {
-        let count = 0;
-        const counterBtn = document.getElementById('counterBtn');
-        counterBtn?.addEventListener('click', () => {
-          count++;
-          counterBtn.textContent = `Кликов: ${count}`;
-        });
+        const btn = document.getElementById('counterBtn');
+        if (btn) {
+          let count = 0;
+          btn.addEventListener('click', () => {
+            count++;
+            btn.textContent = `Кликов: ${count}`;
+          });
+        }
       }
+    }
+
+    function removeEventListeners() {
+      // Удаляем все event listeners из preview-кнопок
+      const previewBtns = document.querySelectorAll('.preview-area button');
+      previewBtns.forEach(btn => {
+        // Создаём клон кнопки без событий
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+      });
     }
 
     function escapeHtml(str) {

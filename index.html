@@ -73,16 +73,19 @@
         </div>
 
         <div class="detail-box" id="typo-detail">
-          <h2>Адаптивный текст</h2>
-          <p>Шрифт изменяется в зависимости от размера экрана.</p>
+          <h2>Градиентный текст</h2>
+          <p>Текст с градиентом.</p>
           <div class="preview-area">
-            <p class="responsive-text">Этот текст адаптируется под размер экрана</p>
+            <h2 class="gradient-text">Градиентный текст</h2>
           </div>
-          <div class="code-block"><p class="responsive-text">Этот текст адаптируется под размер экрана</p>
+          <div class="code-block"><h2 class="gradient-text">Градиентный текст</h2>
 
 <style>
-.responsive-text {
-  font-size: clamp(1rem, 4vw, 2.5rem);
+.gradient-text {
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.5rem;
 }
 </style></div>
         </div>
@@ -389,47 +392,29 @@
         </div>
 
         <div class="detail-box" id="cards-detail">
-          <h2>Перетаскивание карточки</h2>
-          <p>Карточка, которую можно перетащить.</p>
+          <h2>Карточка с hover</h2>
+          <p>При наведении карточка поднимается.</p>
           <div class="preview-area">
-            <div class="draggable-card" draggable="true" style="position: absolute; top: 100px; left: 100px; width: 150px; height: 100px; background: #0d6efd; color: white; display: flex; align-items: center; justify-content: center;">
-  Перетащи меня
+            <div class="card card-hover">
+  <img src="https://placehold.co/200x150" alt="Карточка" />
+  <h3>Заголовок</h3>
+  <p>Описание карточки</p>
 </div>
           </div>
-          <div class="code-block"><div class="draggable-card" draggable="true" style="position: absolute; top: 100px; left: 100px; width: 150px; height: 100px; background: #0d6efd; color: white; display: flex; align-items: center; justify-content: center;">
-  Перетащи меня
+          <div class="code-block"><div class="card card-hover">
+  <img src="https://placehold.co/200x150" alt="Карточка" />
+  <h3>Заголовок</h3>
+  <p>Описание карточки</p>
 </div>
 
-<script>
-let card = document.querySelector('.draggable-card');
-let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-card.onmousedown = dragMouseDown;
-
-function dragMouseDown(e) {
-  e = e || window.event;
-  e.preventDefault();
-  pos3 = e.clientX;
-  pos4 = e.clientY;
-  document.onmouseup = closeDragElement;
-  document.onmousemove = elementDrag;
+<style>
+.card-hover {
+  transition: transform 0.3s;
 }
-
-function elementDrag(e) {
-  e = e || window.event;
-  e.preventDefault();
-  pos1 = pos3 - e.clientX;
-  pos2 = pos4 - e.clientY;
-  pos3 = e.clientX;
-  pos4 = e.clientY;
-  card.style.top = (card.offsetTop - pos2) + "px";
-  card.style.left = (card.offsetLeft - pos1) + "px";
+.card-hover:hover {
+  transform: translateY(-10px);
 }
-
-function closeDragElement() {
-  document.onmouseup = null;
-  document.onmousemove = null;
-}
-</script></div>
+</style></div>
         </div>
       </div>
     </section>
@@ -718,64 +703,69 @@ window.addEventListener('resize', updateWidth);
         </div>
 
         <div class="detail-box" id="ux-detail">
-          <h2>Кастомный скроллбар</h2>
-          <p>Стилизованный скроллбар.</p>
+          <h2>Кастомные табы</h2>
+          <p>Интерактивные табы.</p>
           <div class="preview-area">
-            <div class="custom-scrollbar" style="height: 150px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
+            <div class="tab-container">
+  <button class="tab-btn active" data-tab="tab1">Вкладка 1</button>
+  <button class="tab-btn" data-tab="tab2">Вкладка 2</button>
+  <div class="tab-content active" id="tab1">
+    <p>Содержимое первой вкладки</p>
+  </div>
+  <div class="tab-content" id="tab2">
+    <p>Содержимое второй вкладки</p>
+  </div>
 </div>
           </div>
-          <div class="code-block"><div class="custom-scrollbar" style="height: 150px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
-  <p>Это длинный текст, чтобы появился скролл.</p>
+          <div class="code-block"><div class="tab-container">
+  <button class="tab-btn active" data-tab="tab1">Вкладка 1</button>
+  <button class="tab-btn" data-tab="tab2">Вкладка 2</button>
+  <div class="tab-content active" id="tab1">
+    <p>Содержимое первой вкладки</p>
+  </div>
+  <div class="tab-content" id="tab2">
+    <p>Содержимое второй вкладки</p>
+  </div>
 </div>
 
 <style>
-.custom-scrollbar::-webkit-scrollbar {
-  width: 12px;
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  background: #e9ecef;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
+.tab-btn.active {
+  background: #0d6efd;
+  color: white;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
+.tab-content {
+  display: none;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.tab-content.active {
+  display: block;
 }
-</style></div>
+</style>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    const tabId = btn.getAttribute('data-tab');
+    document.getElementById(tabId).classList.add('active');
+  });
+});
+</script></div>
         </div>
       </div>
     </section>
@@ -812,28 +802,136 @@ window.addEventListener('resize', updateWidth);
         </div>
 
         <div class="detail-box" id="widgets-detail">
-          <h2>Прогресс-бар</h2>
-          <p>Индикатор выполнения.</p>
+          <h2>Календарь</h2>
+          <p>Простой календарь.</p>
           <div class="preview-area">
-            <div class="progress-container">
-  <div class="progress-bar" style="width: 30%; height: 20px; background: #0d6efd;"></div>
+            <div class="calendar">
+  <h3>Ноябрь 2025</h3>
+  <div class="calendar-grid">
+    <div class="calendar-day">Пн</div>
+    <div class="calendar-day">Вт</div>
+    <div class="calendar-day">Ср</div>
+    <div class="calendar-day">Чт</div>
+    <div class="calendar-day">Пт</div>
+    <div class="calendar-day">Сб</div>
+    <div class="calendar-day">Вс</div>
+    <div class="calendar-date">28</div>
+    <div class="calendar-date">29</div>
+    <div class="calendar-date">30</div>
+    <div class="calendar-date">31</div>
+    <div class="calendar-date">1</div>
+    <div class="calendar-date">2</div>
+    <div class="calendar-date">3</div>
+    <div class="calendar-date">4</div>
+    <div class="calendar-date">5</div>
+    <div class="calendar-date">6</div>
+    <div class="calendar-date">7</div>
+    <div class="calendar-date">8</div>
+    <div class="calendar-date">9</div>
+    <div class="calendar-date">10</div>
+    <div class="calendar-date">11</div>
+    <div class="calendar-date">12</div>
+    <div class="calendar-date">13</div>
+    <div class="calendar-date today">14</div>
+    <div class="calendar-date">15</div>
+    <div class="calendar-date">16</div>
+    <div class="calendar-date">17</div>
+    <div class="calendar-date">18</div>
+    <div class="calendar-date">19</div>
+    <div class="calendar-date">20</div>
+    <div class="calendar-date">21</div>
+    <div class="calendar-date">22</div>
+    <div class="calendar-date">23</div>
+    <div class="calendar-date">24</div>
+    <div class="calendar-date">25</div>
+    <div class="calendar-date">26</div>
+    <div class="calendar-date">27</div>
+    <div class="calendar-date">28</div>
+    <div class="calendar-date">29</div>
+    <div class="calendar-date">30</div>
+  </div>
 </div>
           </div>
-          <div class="code-block"><div class="progress-container">
-  <div class="progress-bar" style="width: 30%; height: 20px; background: #0d6efd;"></div>
+          <div class="code-block"><div class="calendar">
+  <h3>Ноябрь 2025</h3>
+  <div class="calendar-grid">
+    <div class="calendar-day">Пн</div>
+    <div class="calendar-day">Вт</div>
+    <div class="calendar-day">Ср</div>
+    <div class="calendar-day">Чт</div>
+    <div class="calendar-day">Пт</div>
+    <div class="calendar-day">Сб</div>
+    <div class="calendar-day">Вс</div>
+    <div class="calendar-date">28</div>
+    <div class="calendar-date">29</div>
+    <div class="calendar-date">30</div>
+    <div class="calendar-date">31</div>
+    <div class="calendar-date">1</div>
+    <div class="calendar-date">2</div>
+    <div class="calendar-date">3</div>
+    <div class="calendar-date">4</div>
+    <div class="calendar-date">5</div>
+    <div class="calendar-date">6</div>
+    <div class="calendar-date">7</div>
+    <div class="calendar-date">8</div>
+    <div class="calendar-date">9</div>
+    <div class="calendar-date">10</div>
+    <div class="calendar-date">11</div>
+    <div class="calendar-date">12</div>
+    <div class="calendar-date">13</div>
+    <div class="calendar-date today">14</div>
+    <div class="calendar-date">15</div>
+    <div class="calendar-date">16</div>
+    <div class="calendar-date">17</div>
+    <div class="calendar-date">18</div>
+    <div class="calendar-date">19</div>
+    <div class="calendar-date">20</div>
+    <div class="calendar-date">21</div>
+    <div class="calendar-date">22</div>
+    <div class="calendar-date">23</div>
+    <div class="calendar-date">24</div>
+    <div class="calendar-date">25</div>
+    <div class="calendar-date">26</div>
+    <div class="calendar-date">27</div>
+    <div class="calendar-date">28</div>
+    <div class="calendar-date">29</div>
+    <div class="calendar-date">30</div>
+  </div>
 </div>
 
 <style>
-.progress-container {
-  width: 100%;
-  background: #e9ecef;
-  border-radius: 10px;
-  overflow: hidden;
+.calendar {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
 }
-.progress-bar {
-  height: 100%;
+.calendar h3 {
+  margin-bottom: 10px;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.calendar-day {
+  font-weight: bold;
+  padding: 5px;
+  background: #e9ecef;
+  border-radius: 4px;
+}
+.calendar-date {
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.calendar-date:hover {
+  background: #e9ecef;
+}
+.calendar-date.today {
   background: #0d6efd;
-  transition: width 0.3s;
+  color: white;
 }
 </style></div>
         </div>
